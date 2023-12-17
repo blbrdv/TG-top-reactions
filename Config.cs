@@ -3,6 +3,8 @@
 public static class Config
 {
     public static readonly string ChannelName = Environment.GetEnvironmentVariable("CHANNEL")!;
+    public static readonly int ReactionCountLimit = int.Parse(Environment.GetEnvironmentVariable("LIMIT")!);
+    public static readonly int MinutesLimit = int.Parse(Environment.GetEnvironmentVariable("MINUTES")!);
     
     public static string? Auth(string what)
     {

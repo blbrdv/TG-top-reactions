@@ -3,7 +3,7 @@ using TL;
 using Config = tgreacts.Config;
 
 using var client = new WTelegram.Client(Config.Auth);
-var myself = await client.LoginUserIfNeeded();
+var _ = await client.LoginUserIfNeeded();
 
 var channel = await client.Channels_GetChannelByUsername(Config.ChannelName);
 var history = await client.Messages_GetHistory(channel, 0, default, 0, 0);
@@ -12,7 +12,7 @@ var history = await client.Messages_GetHistory(channel, 0, default, 0, 0);
 Dictionary<string, int> messages = new();
 var step = 0;
 
-while (history.Messages[0].Date >= DateTime.Today.AddYears(-1))
+while (history.Messages[0].Date >= DateTime.Today.AddMinutes(-Config.MinutesLimit))
 {
     await Task.Delay(1000);
 
@@ -21,14 +21,14 @@ while (history.Messages[0].Date >= DateTime.Today.AddYears(-1))
         if (messageBase == null || messageBase.GetType() == typeof(MessageService))
             continue;
         
-        var m = (Message)messageBase;
+        var message = (Message)messageBase;
         
-        if (m.reactions == null)
+        if (message.reactions == null)
             continue;
 
-        var count = m.reactions.results.Sum(x => x.count);
+        var count = message.reactions.results.Sum(x => x.count);
 
-        if (count <= 5)
+        if (count <= Config.ReactionCountLimit)
             continue;
         
         messages.Add($"https://t.me/{Config.ChannelName}/{messageBase.ID}", count);

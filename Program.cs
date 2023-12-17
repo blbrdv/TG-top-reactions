@@ -28,7 +28,7 @@ while (history.Messages[0].Date >= DateTime.Today.AddYears(-1))
 
         var count = m.reactions.results.Sum(x => x.count);
 
-        if (count < 5)
+        if (count <= 5)
             continue;
         
         messages.Add($"https://t.me/{Config.ChannelName}/{messageBase.ID}", count);

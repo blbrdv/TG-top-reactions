@@ -39,7 +39,7 @@ while (history.Messages[0].Date >= DateTime.Today.AddMinutes(-Config.MinutesLimi
 }
 
 messages = messages
-    .OrderBy(x => x.Value)
+    .OrderByDescending(x => x.Value)
     .ToDictionary(x => x.Key, x => x.Value);
 
 foreach (var message in messages)

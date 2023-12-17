@@ -9,20 +9,31 @@ var channel = await client.Channels_GetChannelByUsername(Config.ChannelName);
 var history = await client.Messages_GetHistory(channel, 0, default, 0, 0);
 
 
-Dictionary<MessageBase, int> messages = new();
+Dictionary<string, int> messages = new();
 var step = 0;
 
 while (history.Messages[0].Date >= DateTime.Today.AddYears(-1))
 {
-    await Task.Delay(500);
+    await Task.Delay(1000);
 
-    foreach (var message in history.Messages)
+    foreach (var messageBase in history.Messages)
     {
         try
         {
-            var rec = await client.Messages_GetMessageReactionsList(new InputPeerUser(myself.ID, myself.access_hash),
-                message.ID);
-            messages.Add(message, rec.count);
+            if (messageBase == null || messageBase.GetType() == typeof(MessageService))
+                continue;
+            
+            var m = (Message)messageBase;
+            
+            if (m.reactions == null)
+                continue;
+
+            var count = m.reactions.results.Sum(x => x.count);
+
+            if (count < 5)
+                continue;
+            
+            messages.Add($"https://t.me/{Config.ChannelName}/{messageBase.ID}", count);
         }
         catch (RpcException)
         {
@@ -41,5 +52,5 @@ messages = messages
 
 foreach (var message in messages)
 {
-    Console.WriteLine($"{message.Value}   https://t.me/{Config.ChannelName}/{message.Key.ID}");
+    Console.WriteLine($"{message.Value}  {message.Key}");
 }

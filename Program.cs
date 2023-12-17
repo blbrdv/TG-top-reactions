@@ -18,28 +18,20 @@ while (history.Messages[0].Date >= DateTime.Today.AddYears(-1))
 
     foreach (var messageBase in history.Messages)
     {
-        try
-        {
-            if (messageBase == null || messageBase.GetType() == typeof(MessageService))
-                continue;
-            
-            var m = (Message)messageBase;
-            
-            if (m.reactions == null)
-                continue;
+        if (messageBase == null || messageBase.GetType() == typeof(MessageService))
+            continue;
+        
+        var m = (Message)messageBase;
+        
+        if (m.reactions == null)
+            continue;
 
-            var count = m.reactions.results.Sum(x => x.count);
+        var count = m.reactions.results.Sum(x => x.count);
 
-            if (count < 5)
-                continue;
-            
-            messages.Add($"https://t.me/{Config.ChannelName}/{messageBase.ID}", count);
-        }
-        catch (RpcException)
-        {
-            // This exception happens when
-            // message have not reactions
-        }
+        if (count < 5)
+            continue;
+        
+        messages.Add($"https://t.me/{Config.ChannelName}/{messageBase.ID}", count);
     }
 
     step += 20;

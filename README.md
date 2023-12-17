@@ -1,6 +1,6 @@
 # TG top reactions
 
-Simple script for getting post ordered by reactions count in last year.
+Simple script for getting posts ordered by reactions count in last year.
 
 ## Why?
 

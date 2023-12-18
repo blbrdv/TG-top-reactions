@@ -9,6 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Utility.CommandLine.Arguments" Version="6.0.0" />
       <PackageReference Include="WTelegramClient" Version="3.6.1" />
     </ItemGroup>
 

@@ -16,7 +16,7 @@ public static class Args
     [Argument('c', "channel", "Channel name.")]
     public static string ChannelName { get; set; }
     
-    [Argument('r', "reaction", "Reaction count limit.")]
+    [Argument('r', "reactions", "Reaction count limit.")]
     public static int ReactionCountLimit { get; set; } = 5;
     
     [Argument('m', "minutes", "Time limit in minutes.")]

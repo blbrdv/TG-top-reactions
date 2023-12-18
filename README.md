@@ -8,18 +8,18 @@ Because i can.
 
 ## Run
 
-1. Set following environment variables:
- - `API_HASH` - credentials of account for this script. 
+1. Write following arguments:
+ - `-h`, `--hash` - credentials of account for this script. 
 Obtained from [here](https://my.telegram.org/apps).
 Example: `abcdef0123456798abdef0123456789`.
- - `API_ID` - same as above.
+ - `-i`, `--id` - same as above.
 Example: `12345678`.
- - `CHANNEL` - username of channel you want to check.
- - `PHONE` - phone number in international format of account.
+ - `-c`, `--channel` - username of channel you want to check.
+ - `-p`, `--phone` - phone number in international format of account.
 Example: `+78005553535`.
- - `LIMIT` - Limit of reactions count in message.
+ - `-r`, `--reactions` - Limit of reactions count in message.
 Example: `5`.
- - `MINUTES` - Limit in minutes datetime of messages from now. 
+ - `-m`, `--minutes` - Limit in minutes datetime of messages from now. 
 Example: `525600`.
 
 2. Run script.

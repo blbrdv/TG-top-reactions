@@ -1,4 +1,4 @@
-﻿using tgreacts;
+﻿using TGTopReactions;
 using TL;
 using Config = tgreacts.Config;
 

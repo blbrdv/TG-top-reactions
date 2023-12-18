@@ -1,7 +1,7 @@
 ﻿using TL;
 using WTelegram;
 
-namespace tgreacts;
+namespace TGTopReactions;
 
 public static class ClientExtensions
 {

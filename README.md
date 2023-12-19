@@ -19,8 +19,8 @@ Example: `12345678`.
 Example: `+78005553535`.
  - `-r`, `--reactions` - Limit of reactions count in message.
 Example: `5`.
- - `-m`, `--minutes` - Limit in minutes datetime of messages from now. 
-Example: `525600`.
+ - `-t`, `--period` - Period for which messages are parsed. 
+Example: `2M3d1h`.
 
 2. Run script.
 

@@ -25,7 +25,7 @@ var history = await client.Messages_GetHistory(channel, 0, default, 0, 0);
 Dictionary<string, int> messages = new();
 var step = 0;
 
-while (history.Messages[0].Date >= DateTime.Today.AddMinutes(-Args.MinutesTimeLimit))
+while (history.Messages[0].Date >= DateTime.Today.AddMinutes(-PeriodParser.Parse(Args.ParsingPeriod)))
 {
     await Task.Delay(1000);
 
